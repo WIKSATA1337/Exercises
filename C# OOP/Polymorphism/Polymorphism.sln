@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32929.385
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vehicles", "Vehicles\Vehicles.csproj", "{56D32DCD-9688-4DEF-91BB-D9F3F257941F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Raiding", "Raiding\Raiding.csproj", "{79C563B6-40DE-4A82-8CE3-73FB310504BB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WildFarm", "WildFarm\WildFarm.csproj", "{3E4823FD-F227-4AAC-9636-550FE41124FC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{56D32DCD-9688-4DEF-91BB-D9F3F257941F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56D32DCD-9688-4DEF-91BB-D9F3F257941F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56D32DCD-9688-4DEF-91BB-D9F3F257941F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56D32DCD-9688-4DEF-91BB-D9F3F257941F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{79C563B6-40DE-4A82-8CE3-73FB310504BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79C563B6-40DE-4A82-8CE3-73FB310504BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79C563B6-40DE-4A82-8CE3-73FB310504BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79C563B6-40DE-4A82-8CE3-73FB310504BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3E4823FD-F227-4AAC-9636-550FE41124FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E4823FD-F227-4AAC-9636-550FE41124FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E4823FD-F227-4AAC-9636-550FE41124FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E4823FD-F227-4AAC-9636-550FE41124FC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B582F7B9-A307-4EF5-B2E6-C02FEB089A7B}
+	EndGlobalSection
+EndGlobal
