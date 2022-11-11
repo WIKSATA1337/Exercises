@@ -68,7 +68,7 @@ namespace Problem02.Stack
 
             var currentNode = top;
 
-            while (currentNode.Next != null)
+            while (currentNode != null)
             {
                 if (currentNode.Element.Equals(item))
                 {
