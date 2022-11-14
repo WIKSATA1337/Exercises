@@ -32,6 +32,7 @@ I strive to add every single exercise I do here.
 
 > ### <a href="https://github.com/viktorgkw/Exercises/tree/main/C%23%20Data%20Structures">C# Data Structures</a>
 >> - #### <a href="https://github.com/viktorgkw/Exercises/tree/main/C%23%20Data%20Structures/LinearDataStructures">Linear Data Structures</a>
+>> - #### <a href="https://github.com/viktorgkw/Exercises/tree/main/C%23%20Data%20Structures/LinearDataStructuresExercise">Linear Data Structures Exercises</a>
 
 <br />
 
