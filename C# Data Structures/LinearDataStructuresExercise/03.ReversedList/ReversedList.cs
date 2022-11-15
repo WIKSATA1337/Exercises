@@ -3,6 +3,7 @@
     using System;
     using System.Collections;
     using System.Collections.Generic;
+    using System.Linq;
 
     public class ReversedList<T> : IAbstractList<T>
     {
@@ -32,8 +33,7 @@
             set
             {
                 ValidateIndex(index);
-
-                items[index] = value;
+                items[Count - 1 - index] = value;
             }
         }
 
