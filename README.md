@@ -29,10 +29,13 @@ I strive to add every single exercise I do here.
 >> - #### <a href="https://github.com/viktorgkw/Exercises/tree/main/C%23%20OOP/Inheritance">Inheritance</a>
 >> - #### <a href="https://github.com/viktorgkw/Exercises/tree/main/C%23%20OOP/InterfacesAndAbstractions">Interfaces and Abstractions</a>
 >> - #### <a href="https://github.com/viktorgkw/Exercises/tree/main/C%23%20OOP/Polymorphism">Polymorphism</a>
+>> - #### <a href="https://github.com/viktorgkw/Exercises/tree/main/C%23%20OOP/ReflectionAndAttributes">ReflectionAndAttributes</a>
+>> - #### <a href="https://github.com/viktorgkw/Exercises/tree/main/C%23%20OOP/UnitTesting">UnitTesting</a>
 
 > ### <a href="https://github.com/viktorgkw/Exercises/tree/main/C%23%20Data%20Structures">C# Data Structures</a>
 >> - #### <a href="https://github.com/viktorgkw/Exercises/tree/main/C%23%20Data%20Structures/LinearDataStructures">Linear Data Structures</a>
 >> - #### <a href="https://github.com/viktorgkw/Exercises/tree/main/C%23%20Data%20Structures/LinearDataStructuresExercise">Linear Data Structures Exercises</a>
+>> - #### <a href="https://github.com/viktorgkw/Exercises/tree/main/C%23%20Data%20Structures/Trees">Trees</a>
 
 <br />
 
