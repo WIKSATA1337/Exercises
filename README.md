@@ -25,15 +25,18 @@ I strive to add every single exercise I do here.
 >> - #### <a href="https://github.com/viktorgkw/Exercises/tree/main/C%23%20OOP/Polymorphism">Polymorphism</a>
 >> - #### <a href="https://github.com/viktorgkw/Exercises/tree/main/C%23%20OOP/ReflectionAndAttributes">Reflection And Attributes 🪞</a>
 >> - #### <a href="https://github.com/viktorgkw/Exercises/tree/main/C%23%20OOP/UnitTesting">UnitTesting 🧪</a>
+>> - #### <a href="https://github.com/viktorgkw/Exercises/tree/main/C%23%20OOP/MockingAndTestDrivenDevelopment">Mocking and Test Driven Development 🧪</a>
 
 > ### <a href="https://github.com/viktorgkw/Exercises/tree/main/C%23%20Data%20Structures">C# Data Structures 🤓</a>
 >> - #### <a href="https://github.com/viktorgkw/Exercises/tree/main/C%23%20Data%20Structures/LinearDataStructures">Linear Data Structures</a>
 >> - #### <a href="https://github.com/viktorgkw/Exercises/tree/main/C%23%20Data%20Structures/LinearDataStructuresExercise">Linear Data Structures Exercises</a>
 >> - #### <a href="https://github.com/viktorgkw/Exercises/tree/main/C%23%20Data%20Structures/Trees">Trees 🌲</a>
+>> - #### <a href="https://github.com/viktorgkw/Exercises/tree/main/C%23%20Data%20Structures/TreesExercise">Trees Exercises 🌲</a>
 
 ## Languages & Technologies 💻
 - **C#**
 - **NUnit**
+- **Moq**
 <br />
 
 ## Thanks for checking out the repository! 💚
