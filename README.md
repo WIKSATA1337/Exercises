@@ -32,6 +32,8 @@ I strive to add every single exercise I do here.
 >> - #### <a href="https://github.com/viktorgkw/Exercises/tree/main/C%23%20Data%20Structures/LinearDataStructuresExercise">Linear Data Structures Exercises</a>
 >> - #### <a href="https://github.com/viktorgkw/Exercises/tree/main/C%23%20Data%20Structures/Trees">Trees 🌲</a>
 >> - #### <a href="https://github.com/viktorgkw/Exercises/tree/main/C%23%20Data%20Structures/TreesExercise">Trees Exercises 🌲</a>
+>> - #### <a href="https://github.com/viktorgkw/Exercises/tree/main/C%23%20Data%20Structures/HeapsAndBinarySearchTree">Heaps & BST</a>
+>> - #### <a href="https://github.com/viktorgkw/Exercises/tree/main/C%23%20Data%20Structures/HeapsAndBinarySearchTreeExercises">Heaps & BST Exercises</a>
 
 ## Languages & Technologies 💻
 - **C#**
