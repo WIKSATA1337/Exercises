@@ -28,12 +28,15 @@ I strive to add every single exercise I do here.
 >> - #### <a href="https://github.com/viktorgkw/Exercises/tree/main/C%23%20OOP/MockingAndTestDrivenDevelopment">Mocking and Test Driven Development 🧪</a>
 
 > ### <a href="https://github.com/viktorgkw/Exercises/tree/main/C%23%20Data%20Structures">C# Data Structures 🤓</a>
->> - #### <a href="https://github.com/viktorgkw/Exercises/tree/main/C%23%20Data%20Structures/LinearDataStructures">Linear Data Structures</a>
->> - #### <a href="https://github.com/viktorgkw/Exercises/tree/main/C%23%20Data%20Structures/LinearDataStructuresExercise">Linear Data Structures Exercises</a>
->> - #### <a href="https://github.com/viktorgkw/Exercises/tree/main/C%23%20Data%20Structures/Trees">Trees 🌲</a>
->> - #### <a href="https://github.com/viktorgkw/Exercises/tree/main/C%23%20Data%20Structures/TreesExercise">Trees Exercises 🌲</a>
->> - #### <a href="https://github.com/viktorgkw/Exercises/tree/main/C%23%20Data%20Structures/HeapsAndBinarySearchTree">Heaps & BST</a>
->> - #### <a href="https://github.com/viktorgkw/Exercises/tree/main/C%23%20Data%20Structures/HeapsAndBinarySearchTreeExercises">Heaps & BST Exercises</a>
+>> #### <a>Fundamentals</a>
+>> - ##### <a href="https://github.com/viktorgkw/Exercises/tree/main/C%23%20Data%20Structures/Fundamentals/LinearDataStructures">Linear Data Structures</a>
+>> - ##### <a href="https://github.com/viktorgkw/Exercises/tree/main/C%23%20Data%20Structures/Fundamentals/LinearDataStructuresExercise">Linear Data Structures Exercises</a>
+>> - ##### <a href="https://github.com/viktorgkw/Exercises/tree/main/C%23%20Data%20Structures/Fundamentals/Trees">Trees 🌲</a>
+>> - ##### <a href="https://github.com/viktorgkw/Exercises/tree/main/C%23%20Data%20Structures/Fundamentals/TreesExercise">Trees Exercises 🌲</a>
+>> - ##### <a href="https://github.com/viktorgkw/Exercises/tree/main/C%23%20Data%20Structures/Fundamentals/HeapsAndBinarySearchTree">Heaps & BST</a>
+>> - ##### <a href="https://github.com/viktorgkw/Exercises/tree/main/C%23%20Data%20Structures/Fundamentals/HeapsAndBinarySearchTreeExercises">Heaps & BST Exercises</a>
+>> - ##### <a href="https://github.com/viktorgkw/Exercises/tree/main/C%23%20Data%20Structures/Fundamentals/Exam%20Exercises">Exam Exercises</a>
+>> #### <a>Advanced</a>
 
 ## Languages & Technologies 💻
 - **C#**
