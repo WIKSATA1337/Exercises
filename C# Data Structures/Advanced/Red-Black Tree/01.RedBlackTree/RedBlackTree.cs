@@ -48,7 +48,7 @@
             {
                 node.Left = this.Insert(element, node.Left);
             }
-            else/* if (element.CompareTo(node.Value) > 0)*/
+            else
             {
                 node.Right = this.Insert(element, node.Right);
             }
