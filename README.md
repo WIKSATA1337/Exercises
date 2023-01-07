@@ -37,9 +37,10 @@ I strive to add every single exercise I do here.
 >> - ##### <a href="https://github.com/viktorgkw/Exercises/tree/main/C%23%20Data%20Structures/Fundamentals/HeapsAndBinarySearchTreeExercises">Heaps & BST Exercises</a>
 >> - ##### <a href="https://github.com/viktorgkw/Exercises/tree/main/C%23%20Data%20Structures/Fundamentals/Exam%20Exercises">Exam Exercises</a>
 >> #### <a>Advanced</a>
->> - ##### <a href="https://github.com/viktorgkw/Exercises/tree/main/C%23%20Data%20Structures/Advanced/Two-Three%20Tree">2-3 Tree</a>
->> - ##### <a href="https://github.com/viktorgkw/Exercises/tree/main/C%23%20Data%20Structures/Advanced/Red-Black%20Tree">Red-Black Tree</a>
->> - ##### <a href="https://github.com/viktorgkw/Exercises/tree/main/C%23%20Data%20Structures/Advanced/AA%20Tree">AA Tree</a>
+>> - ##### <a href="https://github.com/viktorgkw/Exercises/tree/main/C%23%20Data%20Structures/Advanced/Two-Three%20Tree">2-3 Tree 🌲</a>
+>> - ##### <a href="https://github.com/viktorgkw/Exercises/tree/main/C%23%20Data%20Structures/Advanced/Red-Black%20Tree">Red-Black Tree 🌲</a>
+>> - ##### <a href="https://github.com/viktorgkw/Exercises/tree/main/C%23%20Data%20Structures/Advanced/AA%20Tree">AA Tree 🌲</a>
+>> - ##### <a href="https://github.com/viktorgkw/Exercises/tree/main/C%23%20Data%20Structures/Advanced/AVL%20Tree">AVL Tree 🌲</a>
 
 ## Languages & Technologies 💻
 - **C#**
