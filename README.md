@@ -41,6 +41,8 @@ I strive to add every single exercise I do here.
 >> - ##### <a href="https://github.com/viktorgkw/Exercises/tree/main/C%23%20Data%20Structures/Advanced/Red-Black%20Tree">Red-Black Tree 🌲</a>
 >> - ##### <a href="https://github.com/viktorgkw/Exercises/tree/main/C%23%20Data%20Structures/Advanced/AA%20Tree">AA Tree 🌲</a>
 >> - ##### <a href="https://github.com/viktorgkw/Exercises/tree/main/C%23%20Data%20Structures/Advanced/AVL%20Tree">AVL Tree 🌲</a>
+>> >> - ##### <a href="https://github.com/viktorgkw/Exercises/tree/main/C%23%20Data%20Structures/Advanced/HashTable">Hash Table</a>
+>> >> >> - ##### <a href="https://github.com/viktorgkw/Exercises/tree/main/C%23%20Data%20Structures/Advanced/Word%20Cruncher">Word Cruncher</a>
 
 ## Languages & Technologies 💻
 - **C#**
