@@ -44,6 +44,10 @@ I strive to add every single exercise I do here.
 >> - ##### <a href="https://github.com/viktorgkw/Exercises/tree/main/C%23%20Data%20Structures/Advanced/HashTable">Hash Table</a>
 >> - ##### <a href="https://github.com/viktorgkw/Exercises/tree/main/C%23%20Data%20Structures/Advanced/Word%20Cruncher">Word Cruncher</a>
 
+> ### <a href="https://github.com/viktorgkw/Exercises/tree/main/SQL">SQL</a>
+>> - ##### <a href="https://github.com/viktorgkw/Exercises/tree/main/SQL/Database%20Introduction">Database Introduction</a>
+>> - ##### <a href="https://github.com/viktorgkw/Exercises/tree/main/SQL/CRUD">CRUD</a>
+
 ## Languages & Technologies 💻
 - **C#**
 - **NUnit**
