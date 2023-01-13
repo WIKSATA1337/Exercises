@@ -50,6 +50,7 @@ I strive to add every single exercise I do here.
 - **C#**
 - **NUnit**
 - **Moq**
+- **SQL**
 <br />
 
 ## Thanks for checking out the repository! 💚
