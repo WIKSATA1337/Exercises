@@ -1,3 +1,0 @@
-﻿using RecursionAndBacktracking;
-
-PathsFinder.Run();
