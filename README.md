@@ -51,6 +51,14 @@ I strive to add every single exercise I do here.
 > - #### <a href="https://github.com/viktorgkw/Exercises/tree/main/SQL/Database%20Introduction">Database Introduction</a>
 > - #### <a href="https://github.com/viktorgkw/Exercises/tree/main/SQL/CRUD">CRUD</a>
 
+### <a href="https://github.com/viktorgkw/Exercises/tree/main/SQL">Other Exercises</a>
+> - #### <a href="https://github.com/viktorgkw/Exercises/tree/main/Other%20Exercises">LinearSearch</a>
+> - #### <a href="https://github.com/viktorgkw/Exercises/tree/main/Other%20Exercises">BinarySearch</a>
+> - #### <a href="https://github.com/viktorgkw/Exercises/tree/main/Other%20Exercises">BubbleSort</a>
+> - #### <a href="https://github.com/viktorgkw/Exercises/tree/main/Other%20Exercises">QuickSort</a>
+> - #### <a href="https://github.com/viktorgkw/Exercises/tree/main/Other%20Exercises">TwoCrystalBalls</a>
+> - #### <a href="https://github.com/viktorgkw/Exercises/tree/main/Other%20Exercises">MazeSolver</a>
+
 ## Technologies 💻
 - **C#**
 - **NUnit**
