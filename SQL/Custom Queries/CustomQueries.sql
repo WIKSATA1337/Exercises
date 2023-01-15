@@ -1,0 +1,8 @@
+-- SELECT ... FROM ...
+-- WHERE
+--      endsWith something
+--     ... LIKE '%something'
+--      startsWith something
+--     ... LIKE 'something%'
+--      containsBetween something
+--     ... LIKE '%something%'
