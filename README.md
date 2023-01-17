@@ -82,17 +82,17 @@ I strive to add every single exercise I do here.
 
 ### <a href="https://github.com/viktorgkw/Exercises/tree/main/Other">Other</a>
 
-> - #### <a href="https://github.com/viktorgkw/Exercises/tree/main/Other">LinearSearch</a>
+> - #### <a href="https://github.com/viktorgkw/Exercises/blob/main/Other/LinearSearch.cs">LinearSearch</a>
 >
-> - #### <a href="https://github.com/viktorgkw/Exercises/tree/main/Other">BinarySearch</a>
+> - #### <a href="https://github.com/viktorgkw/Exercises/blob/main/Other/BinarySearch.cs">BinarySearch</a>
 
-> - #### <a href="https://github.com/viktorgkw/Exercises/tree/main/Other">BubbleSort</a>
+> - #### <a href="https://github.com/viktorgkw/Exercises/blob/main/Other/BubbleSort.cs">BubbleSort</a>
 
-> - #### <a href="https://github.com/viktorgkw/Exercises/tree/main/Other">QuickSort</a>
+> - #### <a href="https://github.com/viktorgkw/Exercises/blob/main/Other/QuickSort.cs">QuickSort</a>
 >
-> - #### <a href="https://github.com/viktorgkw/Exercises/tree/main/Other">TwoCrystalBalls</a>
+> - #### <a href="https://github.com/viktorgkw/Exercises/blob/main/Other/TwoCrystalBalls.cs">TwoCrystalBalls</a>
 >
-> - #### <a href="https://github.com/viktorgkw/Exercises/tree/main/Other">MazeSolver</a>
+> - #### <a href="https://github.com/viktorgkw/Exercises/blob/main/Other/MazeSolver.cs">MazeSolver</a>
 
 ## Technologies 💻
 
