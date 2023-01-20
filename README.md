@@ -10,7 +10,7 @@ I strive to add every single exercise I do here.
 
 ## Navigation 🧭
 
-### <a href="https://github.com/viktorgkw/Exercises/tree/main/Advanced">C# Advanced</a>
+### <a href="https://github.com/viktorgkw/Exercises/tree/main/Advanced">Advanced (C#)</a>
 >
 > - #### <a href="https://github.com/viktorgkw/Exercises/tree/main/Advanced/Classes">Classes</a>
 >
@@ -30,7 +30,7 @@ I strive to add every single exercise I do here.
 >
 > - #### <a href="https://github.com/viktorgkw/Exercises/tree/main/Advanced/StacksAndQueues">Stacks and Queues 🥞</a>
 
-### <a href="https://github.com/viktorgkw/Exercises/tree/main/OOP">C# OOP</a>
+### <a href="https://github.com/viktorgkw/Exercises/tree/main/OOP">OOP (C#)</a>
 >
 > - #### <a href="https://github.com/viktorgkw/Exercises/tree/main/OOP/Encapsulation">Encapsulation 🔒</a>
 >
@@ -46,7 +46,7 @@ I strive to add every single exercise I do here.
 >
 > - #### <a href="https://github.com/viktorgkw/Exercises/tree/main/OOP/MockingAndTestDrivenDevelopment">Mocking and Test Driven Development 🧪</a>
 
-### <a href="https://github.com/viktorgkw/Exercises/tree/main/Data%20Structures">C# Data Structures 🤓</a>
+### <a href="https://github.com/viktorgkw/Exercises/tree/main/Data%20Structures">Data Structures</a>
 >
 > - #### <a href="https://github.com/viktorgkw/Exercises/tree/main/Data%20Structures/Fundamentals/LinearDataStructures">Linear Data Structures</a>
 >
@@ -79,6 +79,18 @@ I strive to add every single exercise I do here.
 > - #### <a href="https://github.com/viktorgkw/Exercises/tree/main/Algorithms/Fundamentals/RecursionAndBacktracking">Recursion and Backtracking</a>
 >
 > - #### <a href="https://github.com/viktorgkw/Exercises/tree/main/Algorithms/Fundamentals/Combinatorics">Combinatorics</a>
+>
+> - #### <a href="https://github.com/viktorgkw/Exercises/tree/main/Algorithms/Fundamentals/RecursionAndCombExercises">Recursion and Combinatorics Exercises</a>
+>
+> - #### <a href="https://github.com/viktorgkw/Exercises/tree/main/Algorithms/Fundamentals/SearchingSortingGreedy">Searching, Sorting and Greedy Algorithms</a>
+>
+> - #### <a href="https://github.com/viktorgkw/Exercises/tree/main/Algorithms/Fundamentals/GraphsTheory">Graphs</a>
+>
+> - #### <a href="https://github.com/viktorgkw/Exercises/tree/main/Algorithms/Fundamentals/GraphsTheoryExercises">Graphs Exercises</a>
+>
+> - #### <a href="https://github.com/viktorgkw/Exercises/tree/main/Algorithms/Fundamentals/DynamicProgramming">Dynamic Programming</a>
+>
+> - #### <a href="https://github.com/viktorgkw/Exercises/tree/main/Algorithms/Fundamentals/DynamicProgrammingExercises">Dynamic Programming Exercises</a>
 
 ### <a href="https://github.com/viktorgkw/Exercises/tree/main/Other">Other</a>
 
