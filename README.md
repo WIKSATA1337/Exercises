@@ -97,9 +97,9 @@ I strive to add every single exercise I do here.
 > - #### <a href="https://github.com/viktorgkw/Exercises/blob/main/Other/LinearSearch.cs">LinearSearch</a>
 >
 > - #### <a href="https://github.com/viktorgkw/Exercises/blob/main/Other/BinarySearch.cs">BinarySearch</a>
-
+>
 > - #### <a href="https://github.com/viktorgkw/Exercises/blob/main/Other/BubbleSort.cs">BubbleSort</a>
-
+>
 > - #### <a href="https://github.com/viktorgkw/Exercises/blob/main/Other/QuickSort.cs">QuickSort</a>
 >
 > - #### <a href="https://github.com/viktorgkw/Exercises/blob/main/Other/TwoCrystalBalls.cs">TwoCrystalBalls</a>
