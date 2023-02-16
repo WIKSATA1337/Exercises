@@ -14,25 +14,25 @@ namespace SoftUni.Data
         {
         }
 
-        public virtual DbSet<Addresses> Addresses { get; set; }
-        public virtual DbSet<DeletedEmployees> DeletedEmployees { get; set; }
-        public virtual DbSet<Departments> Departments { get; set; }
-        public virtual DbSet<Employees> Employees { get; set; }
-        public virtual DbSet<EmployeesProjects> EmployeesProjects { get; set; }
-        public virtual DbSet<Projects> Projects { get; set; }
-        public virtual DbSet<Towns> Towns { get; set; }
+        public virtual DbSet<Address> Addresses { get; set; }
+        public virtual DbSet<Department> Departments { get; set; }
+        public virtual DbSet<Employee> Employees { get; set; }
+        public virtual DbSet<EmployeeProject> EmployeesProjects { get; set; }
+        public virtual DbSet<Project> Projects { get; set; }
+        public virtual DbSet<Town> Towns { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
                 optionsBuilder.UseSqlServer("Server=.;Database=SoftUni;Integrated Security=True;");
             }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Addresses>(entity =>
+            modelBuilder.Entity<Address>(entity =>
             {
                 entity.HasKey(e => e.AddressId);
 
@@ -51,33 +51,7 @@ namespace SoftUni.Data
                     .HasConstraintName("FK_Addresses_Towns");
             });
 
-            modelBuilder.Entity<DeletedEmployees>(entity =>
-            {
-                entity.HasKey(e => e.EmployeeId)
-                    .HasName("PK__Deleted___7AD04F11D9C05C15");
-
-                entity.ToTable("Deleted_Employees");
-
-                entity.Property(e => e.EmployeeId).ValueGeneratedNever();
-
-                entity.Property(e => e.FirstName)
-                    .IsRequired()
-                    .HasMaxLength(50);
-
-                entity.Property(e => e.JobTitle)
-                    .IsRequired()
-                    .HasMaxLength(255);
-
-                entity.Property(e => e.LastName)
-                    .IsRequired()
-                    .HasMaxLength(50);
-
-                entity.Property(e => e.MiddleName).HasMaxLength(50);
-
-                entity.Property(e => e.Salary).HasColumnType("money");
-            });
-
-            modelBuilder.Entity<Departments>(entity =>
+            modelBuilder.Entity<Department>(entity =>
             {
                 entity.HasKey(e => e.DepartmentId);
 
@@ -97,7 +71,7 @@ namespace SoftUni.Data
                     .HasConstraintName("FK_Departments_Employees");
             });
 
-            modelBuilder.Entity<Employees>(entity =>
+            modelBuilder.Entity<Employee>(entity =>
             {
                 entity.HasKey(e => e.EmployeeId);
 
@@ -149,7 +123,7 @@ namespace SoftUni.Data
                     .HasConstraintName("FK_Employees_Employees");
             });
 
-            modelBuilder.Entity<EmployeesProjects>(entity =>
+            modelBuilder.Entity<EmployeeProject>(entity =>
             {
                 entity.HasKey(e => new { e.EmployeeId, e.ProjectId });
 
@@ -170,7 +144,7 @@ namespace SoftUni.Data
                     .HasConstraintName("FK_EmployeesProjects_Projects");
             });
 
-            modelBuilder.Entity<Projects>(entity =>
+            modelBuilder.Entity<Project>(entity =>
             {
                 entity.HasKey(e => e.ProjectId);
 
@@ -188,7 +162,7 @@ namespace SoftUni.Data
                 entity.Property(e => e.StartDate).HasColumnType("smalldatetime");
             });
 
-            modelBuilder.Entity<Towns>(entity =>
+            modelBuilder.Entity<Town>(entity =>
             {
                 entity.HasKey(e => e.TownId);
 
