@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Globalization;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
 using SoftUni.Data;
@@ -13,9 +12,9 @@ namespace SoftUni
         {
             SoftUniContext context = new SoftUniContext();
 
-            var result = RemoveTown(context);
+            //var result = GetEmployeesFullInformation(context);
 
-            Console.WriteLine(result);
+            //Console.WriteLine(result);
         }
 
         public static string GetEmployeesFullInformation(SoftUniContext context)
@@ -108,49 +107,36 @@ namespace SoftUni
             StringBuilder sb = new StringBuilder();
 
             var employees = context.Employees
-                .Include(x => x.Manager)
-                .Include(x => x.EmployeesProjects)
-                .ThenInclude(x => x.Project)
-                .Where(e => e.EmployeesProjects
-                    .Any(p => p.Project.StartDate.Year >= 2001 && p.Project.StartDate.Year <= 2003))
-                .Take(10);
+                .Include(e => e.EmployeesProjects)
+                .ThenInclude(ep => ep.Project)
+                .Select(e => new
+                {
+                    e.FirstName,
+                    e.LastName,
+                    ManagerFirstName = e.Manager.FirstName,
+                    ManagerLastName = e.Manager.LastName,
+                    Projects = e.EmployeesProjects
+                        .Select(ep => new
+                        {
+                            Name = ep.Project.Name,
+                            StartDate = ep.Project.StartDate,
+                            EndDate = ep.Project.EndDate,
+                        })
+                        .Where(ep => ep.StartDate.Year >= 2001 && ep.StartDate.Year <= 2003)
+                        .ToList()
+                })
+                .ToList();
 
-            foreach (var emp in employees)
+            foreach (var employee in employees)
             {
-                var empName = emp.FirstName + " " + emp.LastName;
-                string managerName = "";
+                sb.AppendLine($"{employee.FirstName} {employee.LastName} - Manager: {employee.ManagerFirstName} {employee.ManagerLastName}");
 
-                if (emp.Manager is null)
+                foreach (var project in employee.Projects)
                 {
-                    managerName = null;
-                }
-                else
-                {
-                    managerName = emp.Manager.FirstName + " " + emp.Manager.LastName;
-                }
-
-                sb.AppendLine($"{empName} - Manager: {managerName}");
-
-                var projects = emp.EmployeesProjects
-                    .Select(ep => new
-                    {
-                        ep.Project.Name,
-                        ep.Project.StartDate,
-                        ep.Project.EndDate
-                    })
-                    .ToList();
-
-                foreach (var project in projects)
-                {
-                    string startDate = project.StartDate.ToString("M/d/yyyy h:mm:ss tt");
-                    string endDate = "not finished";
-
-                    if (project.EndDate != null)
-                    {
-                        endDate = project.EndDate.Value.ToString("M/d/yyyy h:mm:ss tt");
-                    }
-
-                    sb.AppendLine($"--{project.Name} - {startDate} - {endDate}");
+                    object projectEndDate = project.EndDate == null
+                        ? "not finished"
+                        : $"{((DateTime)project.EndDate).ToString("M/d/yyyy h:mm:ss tt", CultureInfo.InvariantCulture)}";
+                    sb.AppendLine($"--{project.Name} - {project.StartDate.ToString("M/d/yyyy h:mm:ss tt", CultureInfo.InvariantCulture)} - {projectEndDate}");
                 }
             }
 
@@ -184,7 +170,7 @@ namespace SoftUni
         public static string GetEmployee147(SoftUniContext context)
         {
             StringBuilder sb = new StringBuilder();
-            
+
             var employee = context.Employees
                 .First(e => e.EmployeeId == 147);
 

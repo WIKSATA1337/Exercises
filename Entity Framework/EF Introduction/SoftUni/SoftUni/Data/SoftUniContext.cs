@@ -14,18 +14,17 @@ namespace SoftUni.Data
         {
         }
 
-        public virtual DbSet<Address> Addresses { get; set; }
-        public virtual DbSet<Department> Departments { get; set; }
-        public virtual DbSet<Employee> Employees { get; set; }
-        public virtual DbSet<EmployeeProject> EmployeesProjects { get; set; }
-        public virtual DbSet<Project> Projects { get; set; }
-        public virtual DbSet<Town> Towns { get; set; }
+        public virtual DbSet<Address> Addresses { get; set; } = null!;
+        public virtual DbSet<Department> Departments { get; set; } = null!;
+        public virtual DbSet<Employee> Employees { get; set; } = null!;
+        public virtual DbSet<Project> Projects { get; set; } = null!;
+        public virtual DbSet<Town> Towns { get; set; } = null!;
+        public virtual DbSet<EmployeeProject> EmployeesProjects { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
                 optionsBuilder.UseSqlServer("Server=.;Database=SoftUni;Integrated Security=True;");
             }
         }
@@ -34,12 +33,9 @@ namespace SoftUni.Data
         {
             modelBuilder.Entity<Address>(entity =>
             {
-                entity.HasKey(e => e.AddressId);
-
                 entity.Property(e => e.AddressId).HasColumnName("AddressID");
 
                 entity.Property(e => e.AddressText)
-                    .IsRequired()
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
@@ -53,14 +49,11 @@ namespace SoftUni.Data
 
             modelBuilder.Entity<Department>(entity =>
             {
-                entity.HasKey(e => e.DepartmentId);
-
                 entity.Property(e => e.DepartmentId).HasColumnName("DepartmentID");
 
                 entity.Property(e => e.ManagerId).HasColumnName("ManagerID");
 
                 entity.Property(e => e.Name)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
@@ -73,8 +66,6 @@ namespace SoftUni.Data
 
             modelBuilder.Entity<Employee>(entity =>
             {
-                entity.HasKey(e => e.EmployeeId);
-
                 entity.Property(e => e.EmployeeId).HasColumnName("EmployeeID");
 
                 entity.Property(e => e.AddressId).HasColumnName("AddressID");
@@ -82,19 +73,16 @@ namespace SoftUni.Data
                 entity.Property(e => e.DepartmentId).HasColumnName("DepartmentID");
 
                 entity.Property(e => e.FirstName)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
                 entity.Property(e => e.HireDate).HasColumnType("smalldatetime");
 
                 entity.Property(e => e.JobTitle)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
                 entity.Property(e => e.LastName)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
@@ -104,7 +92,7 @@ namespace SoftUni.Data
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Salary).HasColumnType("money");
+                entity.Property(e => e.Salary).HasColumnType("decimal(15, 4)");
 
                 entity.HasOne(d => d.Address)
                     .WithMany(p => p.Employees)
@@ -123,31 +111,8 @@ namespace SoftUni.Data
                     .HasConstraintName("FK_Employees_Employees");
             });
 
-            modelBuilder.Entity<EmployeeProject>(entity =>
-            {
-                entity.HasKey(e => new { e.EmployeeId, e.ProjectId });
-
-                entity.Property(e => e.EmployeeId).HasColumnName("EmployeeID");
-
-                entity.Property(e => e.ProjectId).HasColumnName("ProjectID");
-
-                entity.HasOne(d => d.Employee)
-                    .WithMany(p => p.EmployeesProjects)
-                    .HasForeignKey(d => d.EmployeeId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_EmployeesProjects_Employees");
-
-                entity.HasOne(d => d.Project)
-                    .WithMany(p => p.EmployeesProjects)
-                    .HasForeignKey(d => d.ProjectId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_EmployeesProjects_Projects");
-            });
-
             modelBuilder.Entity<Project>(entity =>
             {
-                entity.HasKey(e => e.ProjectId);
-
                 entity.Property(e => e.ProjectId).HasColumnName("ProjectID");
 
                 entity.Property(e => e.Description).HasColumnType("ntext");
@@ -155,7 +120,6 @@ namespace SoftUni.Data
                 entity.Property(e => e.EndDate).HasColumnType("smalldatetime");
 
                 entity.Property(e => e.Name)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
@@ -164,19 +128,27 @@ namespace SoftUni.Data
 
             modelBuilder.Entity<Town>(entity =>
             {
-                entity.HasKey(e => e.TownId);
-
                 entity.Property(e => e.TownId).HasColumnName("TownID");
 
                 entity.Property(e => e.Name)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false);
             });
 
-            OnModelCreatingPartial(modelBuilder);
-        }
+            modelBuilder.Entity<EmployeeProject>(entity =>
+            {
+                entity.HasKey(pk => new { pk.EmployeeId, pk.ProjectId });
 
-        partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
+                entity
+                    .HasOne(ep => ep.Employee)
+                    .WithMany(e => e.EmployeesProjects)
+                    .HasForeignKey(ep => ep.EmployeeId);
+
+                entity
+                    .HasOne(ep => ep.Project)
+                    .WithMany(p => p.EmployeesProjects)
+                    .HasForeignKey(ep => ep.ProjectId);
+            });
+        }
     }
 }

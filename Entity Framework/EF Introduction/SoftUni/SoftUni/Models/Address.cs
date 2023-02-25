@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace SoftUni.Models
+﻿namespace SoftUni.Models
 {
     public partial class Address
     {
@@ -10,10 +8,10 @@ namespace SoftUni.Models
         }
 
         public int AddressId { get; set; }
-        public string AddressText { get; set; }
+        public string AddressText { get; set; } = null!;
         public int? TownId { get; set; }
 
-        public virtual Town Town { get; set; }
+        public virtual Town? Town { get; set; }
         public virtual ICollection<Employee> Employees { get; set; }
     }
 }
