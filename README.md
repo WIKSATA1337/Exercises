@@ -92,6 +92,12 @@ I strive to add every single exercise I do here.
 >
 > - #### <a href="https://github.com/viktorgkw/Exercises/tree/main/Algorithms/Fundamentals/DynamicProgrammingExercises">Dynamic Programming Exercises</a>
 
+### <a href="https://github.com/viktorgkw/Exercises/tree/main/Entity%20Framework">Entity Framework</a>
+
+> - #### <a href="https://github.com/viktorgkw/Exercises/tree/main/Entity%20Framework/EF%20Introduction">EF Introduction</a>
+>
+> - #### <a href="https://github.com/viktorgkw/Exercises/tree/main/Entity%20Framework/Entity%20Relations">Entity Relations</a>
+
 ### <a href="https://github.com/viktorgkw/Exercises/tree/main/Other">Other</a>
 
 > - #### <a href="https://github.com/viktorgkw/Exercises/blob/main/Other/LinearSearch.cs">LinearSearch</a>
