@@ -8,5 +8,9 @@
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public decimal Price { get; set; }
+
+        public ICollection<StudentCourse> StudentsCourses { get; set; }
+        public ICollection<Resource> Resources { get; set; }
+        public ICollection<Homework> Homeworks { get; set; }
     }
 }
