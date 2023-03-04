@@ -99,6 +99,8 @@ I strive to add every single exercise I do here.
 > - #### <a href="https://github.com/viktorgkw/Exercises/tree/main/Entity%20Framework/Entity%20Relations">Entity Relations</a>
 >
 > - #### <a href="https://github.com/viktorgkw/Exercises/tree/main/Entity%20Framework/LINQ">LINQ</a>
+>
+> - #### <a href="https://github.com/viktorgkw/Exercises/tree/main/Entity%20Framework/Advanced%20Querying">Advanced Querying</a>
 
 ### <a href="https://github.com/viktorgkw/Exercises/tree/main/Other">Other</a>
 
@@ -110,9 +112,11 @@ I strive to add every single exercise I do here.
 >
 > - #### <a href="https://github.com/viktorgkw/Exercises/blob/main/Other/QuickSort.cs">QuickSort</a>
 >
-> - #### <a href="https://github.com/viktorgkw/Exercises/blob/main/Other/TwoCrystalBalls.cs">TwoCrystalBalls</a>
+> - #### <a href="https://github.com/viktorgkw/Exercises/blob/main/Other/TwoCrystalBalls.cs">Two Crystal Balls Problem</a>
 >
-> - #### <a href="https://github.com/viktorgkw/Exercises/blob/main/Other/MazeSolver.cs">MazeSolver</a>
+> - #### <a href="https://github.com/viktorgkw/Exercises/blob/main/Other/MazeSolver.cs">Maze Solver</a>
+>
+> - #### <a href="https://github.com/viktorgkw/Exercises/blob/main/Other/PascalTriangle.cs">Pascal's Triangle</a>
 
 ## Technologies 💻
 
