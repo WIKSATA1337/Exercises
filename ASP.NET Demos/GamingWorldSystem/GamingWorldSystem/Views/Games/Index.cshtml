@@ -1,0 +1,54 @@
+﻿@using GamingWorldSystem.Data.Models;
+@model IEnumerable<Game>
+
+@{
+	ViewData["Title"] = "Index";
+}
+
+<h1>All Games</h1>
+
+@if (User.IsInRole("Administrator"))
+{
+	<p class="m-4">
+		<a class="btn btn-success fw-bold" asp-action="Create">Create New</a>
+	</p>
+}
+
+<table class="table">
+	<thead>
+		<tr>
+			<th>
+				@Html.DisplayNameFor(model => model.Name)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Description)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.PremierDate)
+			</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var item in Model)
+		{
+			<tr>
+				<td>
+					@Html.DisplayFor(modelItem => item.Name)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Description)
+				</td>
+				<td>
+					@item.PremierDate.ToString("dd/MM/YYYY")
+				</td>
+				<td>
+					<a class="btn btn-success fw-bold text-light" asp-controller="Catalogs" asp-action="AddTo" asp-route-id="@item.Id">Add To Catalog</a>
+					<a class="btn btn-info fw-bold text-light" asp-action="Details" asp-route-id="@item.Id">Details</a>
+					<a class="btn btn-warning fw-bold text-light" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+					<a class="btn btn-danger fw-bold text-light" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>

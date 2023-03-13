@@ -1,0 +1,40 @@
+﻿@model GamingWorldSystem.Data.Models.Catalog
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Catalog Details</h1>
+<hr />
+<br />
+
+
+<div>
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        <dt class="col-sm-2">
+            Games in @Model.Name
+        </dt>
+        <dd class="col-sm-10">
+            @foreach (var game in Model.Games)
+            {
+                <p class="fw-bold text-dark mb-2">@game.Name</p>
+            }
+        </dd>
+    </dl>
+</div>
+<div>
+    <a class="btn btn-warning fw-bold text-light" asp-action="Edit" asp-route-id="@Model?.Id">Edit</a>
+    <a class="btn btn-secondary fw-bold text-light" asp-action="Index">Back to List</a>
+</div>

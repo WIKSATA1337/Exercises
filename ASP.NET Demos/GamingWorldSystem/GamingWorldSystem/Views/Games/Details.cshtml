@@ -1,0 +1,39 @@
+﻿@model GamingWorldSystem.Data.Models.Game
+
+@{
+	ViewData["Title"] = "Details";
+}
+
+<h1>Game Details</h1>
+<hr />
+<br />
+
+<div>
+	<dl class="row">
+		<dt class="col-sm-2">
+			@Html.DisplayNameFor(model => model.Name)
+		</dt>
+		<dd class="col-sm-10">
+			@Html.DisplayFor(model => model.Name)
+		</dd>
+		<dt class="col-sm-2">
+			@Html.DisplayNameFor(model => model.Description)
+		</dt>
+		<dd class="col-sm-10">
+			@Html.DisplayFor(model => model.Description)
+		</dd>
+		<dt class="col-sm-2">
+			@Html.DisplayNameFor(model => model.PremierDate)
+		</dt>
+		<dd class="col-sm-10">
+			@Model.PremierDate.ToString("dd/MM/YYYY")
+		</dd>
+	</dl>
+</div>
+<div>
+	@if (User.IsInRole("Administrator"))
+	{
+		<a class="btn btn-warning fw-bold text-light" asp-action="Edit" asp-route-id="@Model?.Id">Edit</a>
+	}
+	<a class="btn btn-secondary fw-bold text-light" asp-action="Index">Back to List</a>
+</div>
