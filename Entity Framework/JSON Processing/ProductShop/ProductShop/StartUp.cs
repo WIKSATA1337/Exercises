@@ -1,67 +1,31 @@
 ﻿namespace ProductShop
 {
-    using System.Text.Json.Serialization.Metadata;
     using AutoMapper;
     using AutoMapper.QueryableExtensions;
     using Microsoft.EntityFrameworkCore;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Serialization;
-    using ProductShop.Data;
-    using ProductShop.DTOs.Export;
-    using ProductShop.DTOs.Import;
-    using ProductShop.Models;
+
+    using Data;
+    using DTOs.Export;
+    using DTOs.Import;
+    using Models;
 
     public class StartUp
     {
         public static void Main()
         {
-            using var context = new ProductShopContext();
-
-            //01.Import Users
-            //var usersJSON = File.ReadAllText("../../../Datasets/users.json");
-            //Console.WriteLine(ImportUsers(context, usersJSON));
-
-            //02.Import Products
-            //var productsJSON = File.ReadAllText("../../../Datasets/products.json");
-            //Console.WriteLine(ImportProducts(context, productsJSON));
-
-            //03.Import Categories
-            //var categoriesJSON = File.ReadAllText("../../../Datasets/categories.json");
-            //Console.WriteLine(ImportCategories(context, categoriesJSON));
-
-            //04.Import CategoriesProducts
-            //var cpJSON = File.ReadAllText("../../../Datasets/categories-products.json");
-            //Console.WriteLine(ImportCategoryProducts(context, cpJSON));
-
-            //05.Export Products In Range
-            //var result = GetProductsInRange(context);
-            //Console.WriteLine(result);
-
-            //06.Export Products In Range
-            //var result = GetSoldProducts(context);
-            //Console.WriteLine(result);
-
-            //07.Export Categories by Products Count
-            var result = GetCategoriesByProductsCount(context);
-            Console.WriteLine(result);
+            ProductShopContext context = new ProductShopContext();
         }
 
         public static string ImportUsers(ProductShopContext context, string inputJson)
         {
-            IMapper mapper = new Mapper(new MapperConfiguration(cfg =>
-                cfg.AddProfile<ProductShopProfile>()));
+            IMapper mapper = CreateMapper();
 
-            ImportUserDto[] userDtos =
+            ImportUserDto[] userDtos = 
                 JsonConvert.DeserializeObject<ImportUserDto[]>(inputJson);
 
-            ICollection<User> validUsers = new HashSet<User>();
-
-            foreach (ImportUserDto userDto in userDtos)
-            {
-                User user = mapper.Map<User>(userDto);
-
-                validUsers.Add(user);
-            }
+            ICollection<User> validUsers = mapper.Map<HashSet<User>>(userDtos);
 
             context.Users.AddRange(validUsers);
             context.SaveChanges();
@@ -71,47 +35,39 @@
 
         public static string ImportProducts(ProductShopContext context, string inputJson)
         {
-            IMapper mapper = new Mapper(new MapperConfiguration(cfg =>
-                cfg.AddProfile<ProductShopProfile>()));
+            IMapper mapper = CreateMapper();
 
             ImportProductDto[] productDtos =
                 JsonConvert.DeserializeObject<ImportProductDto[]>(inputJson);
 
-            ICollection<Product> validProducts = new HashSet<Product>();
+            ICollection<Product> products = mapper.Map<HashSet<Product>>(productDtos);
 
-            foreach (var productDto in productDtos)
-            {
-                Product product = mapper.Map<Product>(productDto);
-
-                validProducts.Add(product);
-            }
-
-            context.Products.AddRange(validProducts);
+            context.Products.AddRange(products);
             context.SaveChanges();
 
-            return $"Successfully imported {validProducts.Count}";
+            return $"Successfully imported {products.Count}";
         }
 
         public static string ImportCategories(ProductShopContext context, string inputJson)
         {
-            IMapper mapper = new Mapper(new MapperConfiguration(cfg =>
-                cfg.AddProfile<ProductShopProfile>()));
+            IMapper mapper = CreateMapper();
 
             ImportCategoryDto[] categoryDtos =
                 JsonConvert.DeserializeObject<ImportCategoryDto[]>(inputJson);
 
             ICollection<Category> validCategories = new HashSet<Category>();
 
-            foreach (var categoryDto in categoryDtos)
+            foreach (ImportCategoryDto categoryDto in categoryDtos)
             {
+                if (string.IsNullOrEmpty(categoryDto.Name))
+                {
+                    continue;
+                }
+
                 Category category = mapper.Map<Category>(categoryDto);
 
                 validCategories.Add(category);
             }
-
-            validCategories = validCategories
-                .Where(c => c.Name != null)
-                .ToHashSet();
 
             context.Categories.AddRange(validCategories);
             context.SaveChanges();
@@ -121,13 +77,19 @@
 
         public static string ImportCategoryProducts(ProductShopContext context, string inputJson)
         {
-            IMapper mapper = new Mapper(new MapperConfiguration(cfg =>
-                cfg.AddProfile<ProductShopProfile>()));
+            IMapper mapper = CreateMapper();
 
-            ImportCategoryProductsDto[] cpDtos =
-                JsonConvert.DeserializeObject<ImportCategoryProductsDto[]>(inputJson);
+            ImportCategoryProductDto[] cpDtos =
+                JsonConvert.DeserializeObject<ImportCategoryProductDto[]>(inputJson);
 
-            ICollection<CategoryProduct> validEntries = mapper.Map<HashSet<CategoryProduct>>(cpDtos);
+            ICollection<CategoryProduct> validEntries = new HashSet<CategoryProduct>();
+
+            foreach (ImportCategoryProductDto cpDto in cpDtos)
+            {
+                CategoryProduct categoryProduct = mapper.Map<CategoryProduct>(cpDto);
+
+                validEntries.Add(categoryProduct);
+            }
 
             context.CategoriesProducts.AddRange(validEntries);
             context.SaveChanges();
@@ -137,24 +99,23 @@
 
         public static string GetProductsInRange(ProductShopContext context)
         {
-            IMapper mapper = new Mapper(new MapperConfiguration(cfg =>
-                cfg.AddProfile<ProductShopProfile>()));
+            IMapper mapper = CreateMapper();
 
-            var products = context.Products
+            ExportProductInRangeDto[] productDtos = context.Products
                 .Where(p => p.Price >= 500 && p.Price <= 1000)
                 .OrderBy(p => p.Price)
                 .AsNoTracking()
                 .ProjectTo<ExportProductInRangeDto>(mapper.ConfigurationProvider)
-                .ToList();
+                .ToArray();
 
-            return JsonConvert.SerializeObject(products, Formatting.Indented);
+            return JsonConvert.SerializeObject(productDtos, Formatting.Indented);
         }
 
         public static string GetSoldProducts(ProductShopContext context)
         {
-            IContractResolver resolver = ConfigureCamelCaseNaming();
+            IContractResolver contractResolver = ConfigureCamelCaseNaming();
 
-            var usersSoldProducts = context.Users
+            var usersWithSoldProducts = context.Users
                 .Where(u => u.ProductsSold.Any(p => p.Buyer != null))
                 .OrderBy(u => u.LastName)
                 .ThenBy(u => u.FirstName)
@@ -176,33 +137,92 @@
                 .AsNoTracking()
                 .ToArray();
 
-            return JsonConvert.SerializeObject(
-                usersSoldProducts,
+            return JsonConvert.SerializeObject(usersWithSoldProducts,
                 Formatting.Indented,
                 new JsonSerializerSettings()
                 {
-                    ContractResolver = resolver
-                }
-            );
+                    ContractResolver = contractResolver
+                });
         }
 
         public static string GetCategoriesByProductsCount(ProductShopContext context)
         {
+            IContractResolver contractResolver = ConfigureCamelCaseNaming();
+
             var categories = context.Categories
                 .OrderByDescending(c => c.CategoriesProducts.Count)
                 .Select(c => new
                 {
-                    category = c.Name,
-                    productsCount = c.CategoriesProducts.Count,
-                    averagePrice = Math.Round((double)c.CategoriesProducts
-                        .Average(p => p.Product.Price), 2),
-                    totalRevenue = Math.Round((double)c.CategoriesProducts
-                        .Sum(p => p.Product.Price), 2)
+                    Category = c.Name,
+                    ProductsCount = c.CategoriesProducts.Count,
+                    AveragePrice = Math.Round((double)c.CategoriesProducts.Average(p => p.Product.Price), 2),
+                    TotalRevenue = Math.Round((double)c.CategoriesProducts.Sum(p => p.Product.Price), 2)
                 })
                 .AsNoTracking()
                 .ToArray();
 
-            return JsonConvert.SerializeObject(categories, Formatting.Indented);
+            return JsonConvert.SerializeObject(categories,
+                Formatting.Indented,
+                new JsonSerializerSettings()
+                {
+                    ContractResolver = contractResolver
+                });
+        }
+
+        public static string GetUsersWithProducts(ProductShopContext context)
+        {
+            IContractResolver contractResolver = ConfigureCamelCaseNaming();
+
+            var users = context
+                .Users
+                .Where(u => u.ProductsSold.Any(p => p.Buyer != null))
+                .Select(u => new
+                {
+                    // UserDTO
+                    u.FirstName,
+                    u.LastName,
+                    u.Age,
+                    SoldProducts = new
+                    {
+                        // ProductWrapperDTO
+                        Count = u.ProductsSold
+                            .Count(p => p.Buyer != null),
+                        Products = u.ProductsSold
+                            .Where(p => p.Buyer != null)
+                            .Select(p => new
+                            {
+                                // ProductDTO
+                                p.Name,
+                                p.Price
+                            })
+                            .ToArray()
+                    }
+                })
+                .OrderByDescending(u => u.SoldProducts.Count)
+                .AsNoTracking()
+                .ToArray();
+
+            var userWrapperDto = new
+            { 
+                UsersCount = users.Length,
+                Users = users
+            };
+
+            return JsonConvert.SerializeObject(userWrapperDto,
+                Formatting.Indented,
+                new JsonSerializerSettings()
+                {
+                    ContractResolver = contractResolver,
+                    NullValueHandling = NullValueHandling.Ignore
+                });
+        }
+
+        private static IMapper CreateMapper()
+        {
+            return new Mapper(new MapperConfiguration(cfg =>
+            {
+                cfg.AddProfile<ProductShopProfile>();
+            }));
         }
 
         private static IContractResolver ConfigureCamelCaseNaming()

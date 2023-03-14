@@ -1,9 +1,9 @@
 ﻿namespace ProductShop
 {
     using AutoMapper;
-    using ProductShop.DTOs.Export;
-    using ProductShop.DTOs.Import;
-    using ProductShop.Models;
+    using DTOs.Export;
+    using DTOs.Import;
+    using Models;
 
     public class ProductShopProfile : Profile
     {
@@ -26,7 +26,7 @@
             this.CreateMap<ImportCategoryDto, Category>();
 
             // CategoryProduct
-            this.CreateMap<ImportCategoryProductsDto, CategoryProduct>();
+            this.CreateMap<ImportCategoryProductDto, CategoryProduct>();
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace ProductShop.DTOs.Import
 {
-    public class ImportCategoryProductsDto
+    public class ImportCategoryProductDto
     {
         public int CategoryId { get; set; }
 

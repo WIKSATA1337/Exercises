@@ -1,13 +1,19 @@
-﻿using Microsoft.EntityFrameworkCore;
-using ProductShop.Models;
-namespace ProductShop.Data
+﻿namespace ProductShop.Data
 {
+    using Microsoft.EntityFrameworkCore;
+
+    using Models;
+
     public class ProductShopContext : DbContext
     {
-        public ProductShopContext() { }
+        public ProductShopContext()
+        {
+        }
 
         public ProductShopContext(DbContextOptions options)
-            : base(options) { }
+            : base(options)
+        {
+        }
 
         public DbSet<Category> Categories { get; set; } = null!;
 
@@ -37,15 +43,17 @@ namespace ProductShop.Data
 
             modelBuilder.Entity<User>(entity =>
             {
-                entity.HasMany(x => x.ProductsBought)
-                      .WithOne(x => x.Buyer)
-                      .HasForeignKey(x => x.BuyerId)
-                      .OnDelete(DeleteBehavior.NoAction);
+                entity
+                    .HasMany(x => x.ProductsBought)
+                    .WithOne(x => x.Buyer)
+                    .HasForeignKey(x => x.BuyerId)
+                    .OnDelete(DeleteBehavior.NoAction);
 
-                entity.HasMany(x => x.ProductsSold)
-                      .WithOne(x => x.Seller)
-                      .HasForeignKey(x => x.SellerId)
-                      .OnDelete(DeleteBehavior.NoAction);
+                entity
+                    .HasMany(x => x.ProductsSold)
+                    .WithOne(x => x.Seller)
+                    .HasForeignKey(x => x.SellerId)
+                    .OnDelete(DeleteBehavior.NoAction);
             });
         }
     }

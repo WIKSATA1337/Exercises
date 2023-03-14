@@ -4,7 +4,7 @@
 
 namespace ProductShop.Migrations
 {
-    public partial class Test : Migration
+    public partial class FixProductBuyer : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
