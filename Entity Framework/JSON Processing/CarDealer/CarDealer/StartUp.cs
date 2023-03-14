@@ -3,7 +3,6 @@
     using AutoMapper;
     using Microsoft.EntityFrameworkCore;
     using Newtonsoft.Json;
-    using Newtonsoft.Json.Serialization;
 
     using CarDealer.Data;
     using CarDealer.DTOs.Import;
@@ -217,20 +216,52 @@
             return JsonConvert.SerializeObject(cars, Formatting.Indented);
         }
 
+        public static string GetTotalSalesByCustomer(CarDealerContext context)
+        {
+            var customers = context.Customers
+                .Where(c => c.Sales.Any())
+                .Select(c => new
+                {
+                    fullName = c.Name,
+                    boughtCars = c.Sales.Count(),
+                    spentMoney = c.Sales.Sum(s => s.Car.PartsCars.Sum(p => p.Part.Price))
+                })
+                .OrderByDescending(m => m.spentMoney)
+                .ThenByDescending(c => c.boughtCars)
+                .ToList();
+
+            return JsonConvert.SerializeObject(customers, Formatting.Indented);
+        }
+
+        public static string GetSalesWithAppliedDiscount(CarDealerContext context)
+        {
+            var sales = context.Sales
+                .Select(s => new
+                {
+                    car = new
+                    {
+                        s.Car.Make,
+                        s.Car.Model,
+                        s.Car.TravelledDistance
+                    },
+                    customerName = s.Customer.Name,
+                    discount = $"{s.Discount:F2}",
+                    price = $"{s.Car.PartsCars.Sum(p => p.Part.Price):F2}",
+                    priceWithDiscount = $@"{(s.Car.PartsCars.Sum(p => p.Part.Price) -
+                                             s.Car.PartsCars.Sum(p => p.Part.Price) * s.Discount / 100):F2}"
+                })
+                .Take(10)
+                .ToList();
+
+            return JsonConvert.SerializeObject(sales, Formatting.Indented);
+        }
+
         private static IMapper CreateMapper()
         {
             return new Mapper(new MapperConfiguration(cfg =>
             {
                 cfg.AddProfile<CarDealerProfile>();
             }));
-        }
-
-        private static IContractResolver ConfigureCamelCaseNaming()
-        {
-            return new DefaultContractResolver()
-            {
-                NamingStrategy = new CamelCaseNamingStrategy(false, true)
-            };
         }
     }
 }
