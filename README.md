@@ -101,6 +101,10 @@ I strive to add every single exercise I do here.
 > - #### <a href="https://github.com/viktorgkw/Exercises/tree/main/Entity%20Framework/LINQ">LINQ</a>
 >
 > - #### <a href="https://github.com/viktorgkw/Exercises/tree/main/Entity%20Framework/Advanced%20Querying">Advanced Querying</a>
+>
+> - #### <a href="https://github.com/viktorgkw/Exercises/tree/main/Entity%20Framework/JSON%20Processing">JSON Processing</a>
+>
+> - #### <a href="https://github.com/viktorgkw/Exercises/tree/main/Entity%20Framework/XML%20Processing">XML Processing</a>
 
 ### <a href="https://github.com/viktorgkw/Exercises/tree/main/Other">Other</a>
 
@@ -117,6 +121,10 @@ I strive to add every single exercise I do here.
 > - #### <a href="https://github.com/viktorgkw/Exercises/blob/main/Other/MazeSolver.cs">Maze Solver</a>
 >
 > - #### <a href="https://github.com/viktorgkw/Exercises/blob/main/Other/PascalTriangle.cs">Pascal's Triangle</a>
+
+### <a href="https://github.com/viktorgkw/Exercises/tree/main/Other">Other</a>
+
+> - #### <a href="https://github.com/viktorgkw/Exercises/tree/main/ASP.NET%20Demos">ASP.NET Demos</a>
 
 ## Technologies 💻
 
