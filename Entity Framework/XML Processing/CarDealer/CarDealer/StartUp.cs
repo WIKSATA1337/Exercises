@@ -1,10 +1,8 @@
 ﻿namespace CarDealer
 {
-	using System.IO;
-	using System.Text;
-	using System.Xml.Serialization;
 	using AutoMapper;
 	using AutoMapper.QueryableExtensions;
+
 	using CarDealer.Data;
 	using CarDealer.DTOs.Export;
 	using CarDealer.DTOs.Import;
@@ -22,7 +20,7 @@
 			// ImportSales(context, xml);
 
 			// Exporting code:
-			Console.WriteLine(GetCarsWithDistance(context));
+			Console.WriteLine(GetCarsWithTheirListOfParts(context));
 		}
 
 		public static string ImportSuppliers(CarDealerContext context, string inputXml)
@@ -181,6 +179,36 @@
 				.ThenBy(c => c.Model)
 				.Take(10)
 				.ProjectTo<ExportCarDto>(mapper.ConfigurationProvider)
+				.ToArray();
+
+			return helper.Serialize(cars, "cars");
+		}
+
+		public static string GetCarsFromMakeBmw(CarDealerContext context)
+		{
+			IMapper mapper = InitializeMapper();
+			XmlHelper helper = new XmlHelper();
+
+			ExportBmwCarDto[] cars = context.Cars
+				.Where(c => c.Make == "BMW")
+				.OrderBy(c => c.Model)
+				.ThenByDescending(c => c.TraveledDistance)
+				.ProjectTo<ExportBmwCarDto>(mapper.ConfigurationProvider)
+				.ToArray();
+
+			return helper.Serialize(cars, "cars");
+		}
+
+		public static string GetCarsWithTheirListOfParts(CarDealerContext context)
+		{
+			IMapper mapper = InitializeMapper();
+			XmlHelper helper = new XmlHelper();
+
+			ExportCarWithPartsListDto[] cars = context.Cars
+				.OrderByDescending(c => c.TraveledDistance)
+				.ThenBy(c => c.Model)
+				.Take(5)
+				.ProjectTo<ExportCarWithPartsListDto>(mapper.ConfigurationProvider)
 				.ToArray();
 
 			return helper.Serialize(cars, "cars");
