@@ -1,0 +1,42 @@
+﻿namespace CarDealer.Utilities
+{
+	using System.Text;
+	using System.Xml.Serialization;
+	using CarDealer.DTOs.Export;
+	using CarDealer.Models;
+
+	public class XmlHelper
+	{
+		public T Deserialize<T>(string inputXml, string rootName)
+		{
+			XmlRootAttribute xmlRoot = new XmlRootAttribute(rootName);
+
+			XmlSerializer serializer =
+				new XmlSerializer(typeof(T), xmlRoot);
+
+			using StringReader reader = new StringReader(inputXml);
+
+			T dtos =
+				(T)serializer.Deserialize(reader);
+
+			return dtos;
+		}
+
+		public string Serialize<T>(T obj, string rootName)
+		{
+			StringBuilder sb = new StringBuilder();
+
+			XmlRootAttribute xmlRoot = new XmlRootAttribute(rootName);
+			XmlSerializer serializer = new XmlSerializer(typeof(T), xmlRoot);
+			XmlSerializerNamespaces namespaces = new XmlSerializerNamespaces();
+
+			namespaces.Add(string.Empty, string.Empty);
+
+			using StringWriter writer = new StringWriter(sb);
+
+			serializer.Serialize(writer, obj, namespaces);
+
+			return sb.ToString().TrimEnd();
+		}
+	}
+}
