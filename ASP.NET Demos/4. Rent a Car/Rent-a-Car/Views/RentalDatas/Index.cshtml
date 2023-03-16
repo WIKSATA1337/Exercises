@@ -1,0 +1,70 @@
+﻿@using Rent_a_Car.Data.Models;
+@model IEnumerable<RentalData>
+
+@{
+	ViewData["Title"] = "Index";
+}
+
+<h1>All Rentals</h1>
+
+@if (User.IsInRole("Administrator"))
+{
+	<p>
+		<a asp-action="Create">Create New</a>
+	</p>
+}
+
+<table class="table">
+	<thead>
+		<tr>
+			<th>
+				@Html.DisplayNameFor(model => model.StartDate)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.EndDate)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.FinalPrice)
+			</th>
+			@if (User.IsInRole("Administrator"))
+			{
+				<th>
+					@Html.DisplayNameFor(model => model.Status)
+				</th>
+			}
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var item in Model)
+		{
+			<tr>
+				<td>
+					@Html.DisplayFor(modelItem => item.StartDate)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.EndDate)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.FinalPrice)
+				</td>
+				@if (User.IsInRole("Administrator"))
+				{
+					<td>
+						@Html.DisplayFor(modelItem => item.Status)
+					</td>
+				}
+				<td>
+					@if (User.IsInRole("Administrator"))
+					{
+						<a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+						<a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+						<a asp-action="Approve" asp-route-id="@item.Id">Approve</a>
+					}
+					<a asp-action="Details" asp-route-id="@item.Id">Details</a>
+					<a asp-action="Rent" asp-route-id="@item.Id">Rent</a>
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>
