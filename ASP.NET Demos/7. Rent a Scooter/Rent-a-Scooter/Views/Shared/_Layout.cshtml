@@ -6,13 +6,13 @@
     <title>@ViewData["Title"]</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/Rent_a_Car.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Rent_a_Scooter.styles.css" asp-append-version="true" />
 </head>
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Rent a Car</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Rent a Scooter</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -22,16 +22,18 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
-                        @if(User.IsInRole("User"))
+
+                        @if (User.IsInRole("Client"))
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="RentalDatas" asp-action="Index">Rental Datas</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="RentalRequests" asp-action="Index">Rental Requests</a>
                             </li>
                         }
+
                         @if (User.IsInRole("Administrator"))
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Cars" asp-action="Index">Cars</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Scooters" asp-action="Index">Scooters</a>
                             </li>
                         }
                     </ul>
@@ -48,7 +50,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2023 - Rent a Car
+            &copy; 2023 - Rent a Scooter
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
