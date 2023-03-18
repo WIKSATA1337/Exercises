@@ -91,7 +91,7 @@ namespace Rent_a_Scooter.Controllers
 		}
 
 		[HttpGet]
-		[Authorize(Roles = "User,Administrator")]
+		[Authorize(Roles = "Administrator")]
 		public async Task<IActionResult> Approve(string id)
 		{
 			var rental = await _context.RentalRequests
@@ -107,7 +107,7 @@ namespace Rent_a_Scooter.Controllers
 
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		[Authorize(Roles = "User,Administrator")]
+		[Authorize(Roles = "Administrator")]
 		public async Task<IActionResult> Approve(RentalRequest rentalData)
 		{
 			rentalData.Status = RentalStatusEnums.Active;

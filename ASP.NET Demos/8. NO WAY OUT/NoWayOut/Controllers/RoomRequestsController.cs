@@ -1,66 +1,67 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Rent_a_Car.Data;
-using Rent_a_Car.Data.Models;
-using Rent_a_Car.Data.Models.Enums;
-
-namespace Rent_a_Car.Controllers
+﻿namespace NoWayOut.Controllers
 {
+    using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.EntityFrameworkCore;
+
+    using NoWayOut.Data;
+    using NoWayOut.Data.Models;
+    using NoWayOut.Data.Models.Enums;
+
     [Authorize]
-    public class RentalDatasController : Controller
+    public class RoomRequestsController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public RentalDatasController(ApplicationDbContext context)
+        public RoomRequestsController(ApplicationDbContext context)
         {
             _context = context;
         }
 
         [HttpGet]
-        [Authorize(Roles = "User,Administrator")]
+        [Authorize(Roles = "Client,Administrator")]
         public async Task<IActionResult> Index()
         {
-            if (User.IsInRole("User"))
+            if (User.IsInRole("Administrator"))
             {
-                return View(await _context.RentalData
-                    .Where(r => r.Status == RentalStatusEnums.Active)
+                return View(await _context.RoomRequests.ToListAsync());
+            }
+
+            if (User.IsInRole("Client"))
+            {
+                return View(await _context.RoomRequests
+                    .Where(rr => rr.Status == RoomStatus.Active)
                     .ToListAsync());
             }
 
-            if (User.IsInRole("Administrator"))
-            {
-                return View(await _context.RentalData.ToListAsync());
-            }
-
-            return RedirectToPage("/Home/Index");
+            return NotFound();
         }
 
         [HttpGet]
-        [Authorize(Roles = "User,Administrator")]
+        [Authorize(Roles = "Client,Administrator")]
         public async Task<IActionResult> Details(string id)
         {
-            if (id == null || _context.RentalData == null)
+            if (id == null || _context.RoomRequests == null)
             {
                 return NotFound();
             }
 
-            var rentalData = await _context.RentalData
+            var roomRequest = await _context.RoomRequests
                 .FirstOrDefaultAsync(m => m.Id == id);
 
-            if (rentalData == null)
+            if (roomRequest == null)
             {
                 return NotFound();
             }
 
-            return View(rentalData);
+            return View(roomRequest);
         }
 
         [HttpGet]
         [Authorize(Roles = "User,Administrator")]
-        public async Task<IActionResult> Rent(string id)
+        public async Task<IActionResult> RequestRoom(string id)
         {
-            var rental = await _context.RentalData
+            var rental = await _context.RoomRequests
                 .FirstOrDefaultAsync(r => r.Id == id);
 
             if (rental is null)
@@ -74,9 +75,9 @@ namespace Rent_a_Car.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "User,Administrator")]
-        public async Task<IActionResult> Rent(RentalData rentalData)
+        public async Task<IActionResult> RequestRoom(RoomRequest rentalData)
         {
-            rentalData.Status = RentalStatusEnums.Used;
+            rentalData.Status = RoomStatus.Used;
 
             if (ModelState.IsValid)
             {
@@ -93,8 +94,8 @@ namespace Rent_a_Car.Controllers
         [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Approve(string id)
         {
-            var rental = await _context.RentalData
-                .FirstOrDefaultAsync(r => r.Id == id);
+            var rental = await _context.RoomRequests
+				.FirstOrDefaultAsync(r => r.Id == id);
 
             if (rental is null)
             {
@@ -107,9 +108,9 @@ namespace Rent_a_Car.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Administrator")]
-        public async Task<IActionResult> Approve(RentalData rentalData)
+        public async Task<IActionResult> Approve(RoomRequest rentalData)
         {
-            rentalData.Status = RentalStatusEnums.Active;
+            rentalData.Status = RoomStatus.Active;
 
             if (ModelState.IsValid)
             {
@@ -124,85 +125,71 @@ namespace Rent_a_Car.Controllers
 
         [HttpGet]
         [Authorize(Roles = "Administrator")]
-        public async Task<IActionResult> Create()
+        public IActionResult Create()
         {
-            ViewBag["CarIds"] = await _context.Cars
-                .Select(c => c.Id)
-                .ToListAsync();
-
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Administrator")]
-        public async Task<IActionResult> Create(RentalData rentalData)
+        public async Task<IActionResult> Create(RoomRequest roomRequest)
         {
-            rentalData.Id = Guid.NewGuid().ToString();
-            rentalData.Status = RentalStatusEnums.Waiting;
+            roomRequest.Status = RoomStatus.Waiting;
 
             if (ModelState.IsValid)
             {
-                _context.Add(rentalData);
+                _context.Add(roomRequest);
                 await _context.SaveChangesAsync();
 
                 return RedirectToAction(nameof(Index));
             }
 
-            return View(rentalData);
+            return View(roomRequest);
         }
 
         [HttpGet]
         [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Edit(string id)
         {
-            if (id == null || _context.RentalData == null)
+            if (id == null || _context.RoomRequests == null)
             {
                 return NotFound();
             }
 
-            var rentalData = await _context.RentalData
+            var roomRequest = await _context.RoomRequests
                 .FindAsync(id);
 
-            if (rentalData == null)
+            if (roomRequest == null)
             {
                 return NotFound();
             }
 
-            var car = await _context.Cars
-                .FirstOrDefaultAsync(c => c.Id == rentalData.CarId);
-
-            ViewBag["CarName"] = $"{car?.Make}  {car?.Model}";
-
-            ViewBag["CarIds"] = await _context.Cars
-                .Select(c => c.Id)
-                .ToListAsync();
-
-            return View(rentalData);
+            return View(roomRequest);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Administrator")]
-        public async Task<IActionResult> Edit(string id, RentalData rentalData)
+        public async Task<IActionResult> Edit(string id, RoomRequest roomRequest)
         {
-            if (id != rentalData.Id)
+            if (id != roomRequest.Id)
             {
                 return NotFound();
             }
+
+            roomRequest.Status = RoomStatus.Waiting;
 
             if (ModelState.IsValid)
             {
                 try
                 {
-                    rentalData.Status = RentalStatusEnums.Waiting;
-
-                    _context.Update(rentalData);
+                    _context.Update(roomRequest);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!RentalDataExists(rentalData.Id))
+                    if (!RoomRequestExists(roomRequest.Id))
                     {
                         return NotFound();
                     }
@@ -215,32 +202,27 @@ namespace Rent_a_Car.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
-            return View(rentalData);
+            return View(roomRequest);
         }
 
         [HttpGet]
         [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Delete(string id)
         {
-            if (id == null || _context.RentalData == null)
+            if (id == null || _context.RoomRequests == null)
             {
                 return NotFound();
             }
 
-            var rentalData = await _context.RentalData
+            var roomRequest = await _context.RoomRequests
                 .FirstOrDefaultAsync(m => m.Id == id);
-            
-            if (rentalData == null)
+
+            if (roomRequest == null)
             {
                 return NotFound();
             }
 
-            var car = await _context.Cars
-                .FirstOrDefaultAsync(c => c.Id == rentalData.CarId);
-
-            ViewBag["CarName"] = $"{car?.Make}  {car?.Model}";
-
-            return View(rentalData);
+            return View(roomRequest);
         }
 
         [HttpPost, ActionName("Delete")]
@@ -248,26 +230,27 @@ namespace Rent_a_Car.Controllers
         [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> DeleteConfirmed(string id)
         {
-            if (_context.RentalData == null)
+            if (_context.RoomRequests == null)
             {
-                return Problem("Entity set 'ApplicationDbContext.RentalData'  is null.");
+                return Problem("Entity set 'ApplicationDbContext.RoomRequests'  is null.");
             }
-
-            var rentalData = await _context.RentalData
+            var roomRequest = await _context.RoomRequests
                 .FindAsync(id);
 
-            if (rentalData != null)
+            if (roomRequest is null)
             {
-                _context.RentalData.Remove(rentalData);
-                await _context.SaveChangesAsync();
+                return NotFound();
             }
-            
+
+            _context.RoomRequests.Remove(roomRequest);
+            await _context.SaveChangesAsync();
+
             return RedirectToAction(nameof(Index));
         }
 
-        private bool RentalDataExists(string id)
+        private bool RoomRequestExists(string id)
         {
-          return (_context.RentalData?.Any(e => e.Id == id)).GetValueOrDefault();
+          return (_context.RoomRequests?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

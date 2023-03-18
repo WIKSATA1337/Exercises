@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+
 using Rent_a_Car.Data;
 using Rent_a_Car.Data.Models;
 
