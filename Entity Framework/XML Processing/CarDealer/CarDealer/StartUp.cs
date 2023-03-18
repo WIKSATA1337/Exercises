@@ -17,11 +17,11 @@
 			using CarDealerContext context = new CarDealerContext();
 
 			// Importing code:
-			// string xml = File.ReadAllText("../../../Datasets/sales.xml");
+			// string xml = File.ReadAllText("../../../Datasets/dataSetName.xml");
 			// ImportSales(context, xml);
 
 			// Exporting code:
-			Console.WriteLine(GetTotalSalesByCustomer(context));
+			//Console.WriteLine(MethodName(context));
 		}
 
 		public static string ImportSuppliers(CarDealerContext context, string inputXml)
