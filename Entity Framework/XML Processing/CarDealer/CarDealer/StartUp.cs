@@ -1,5 +1,6 @@
 ﻿namespace CarDealer
 {
+	using System;
 	using AutoMapper;
 	using AutoMapper.QueryableExtensions;
 
@@ -20,7 +21,7 @@
 			// ImportSales(context, xml);
 
 			// Exporting code:
-			Console.WriteLine(GetCarsWithTheirListOfParts(context));
+			Console.WriteLine(GetTotalSalesByCustomer(context));
 		}
 
 		public static string ImportSuppliers(CarDealerContext context, string inputXml)
@@ -199,6 +200,19 @@
 			return helper.Serialize(cars, "cars");
 		}
 
+		public static string GetLocalSuppliers(CarDealerContext context)
+		{
+			IMapper mapper = InitializeMapper();
+			XmlHelper helper = new XmlHelper();
+
+			var suppliers = context.Suppliers
+				.Where(s => !s.IsImporter)
+				.ProjectTo<ExportLocalSupplierDto>(mapper.ConfigurationProvider)
+				.ToArray();
+
+			return helper.Serialize(suppliers, "suppliers");
+		}
+
 		public static string GetCarsWithTheirListOfParts(CarDealerContext context)
 		{
 			IMapper mapper = InitializeMapper();
@@ -212,6 +226,66 @@
 				.ToArray();
 
 			return helper.Serialize(cars, "cars");
+		}
+
+		public static string GetTotalSalesByCustomer(CarDealerContext context)
+		{
+			IMapper mapper = InitializeMapper();
+			XmlHelper helper = new XmlHelper();
+
+			var tempDto = context.Customers
+				.Where(c => c.Sales.Any())
+				.Select(c => new
+				{
+					FullName = c.Name,
+					BoughtCars = c.Sales.Count(),
+					SalesInfo = c.Sales.Select(s => new
+					{
+						Prices = c.IsYoungDriver
+							? s.Car.PartsCars.Sum(p => Math.Round((double)p.Part.Price * 0.95, 2))
+							: s.Car.PartsCars.Sum(p => (double)p.Part.Price)
+					}).ToArray(),
+				})
+				.ToArray();
+
+			ExportSaleByCustomerDto[] totalSalesDtos = tempDto
+				.OrderByDescending(t => t.SalesInfo.Sum(s => s.Prices))
+				.Select(t => new ExportSaleByCustomerDto()
+				{
+					FullName = t.FullName,
+					BoughtCars = t.BoughtCars,
+					SpentMoney = decimal.Parse(t.SalesInfo
+						.Sum(s => s.Prices)
+						.ToString("f2"))
+				})
+				.ToArray();
+
+			return helper.Serialize(totalSalesDtos, "customers");
+		}
+
+		public static string GetSalesWithAppliedDiscount(CarDealerContext context)
+		{
+			XmlHelper helper = new XmlHelper();
+
+			var sales = context.Sales
+				.Select(s => new ExportSaleWithAppliedDiscountDto
+				{
+					CarDto = new ExportCarWithAppliedDiscountDto
+					{
+						Make = s.Car.Make,
+						Model = s.Car.Model,
+						TraveledDistance = s.Car.TraveledDistance,
+					},
+					Discount = s.Discount,
+					CustomerName = s.Customer.Name,
+					Price = s.Car.PartsCars
+						.Sum(p => p.Part.Price),
+					PriceWithDiscount = s.Car.PartsCars
+						.Sum(p => p.Part.Price) - s.Car.PartsCars.Sum(p => p.Part.Price) * s.Discount / 100
+				})
+				.ToArray();
+
+			return helper.Serialize(sales, "sales");
 		}
 
 		private static IMapper InitializeMapper()

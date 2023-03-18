@@ -14,6 +14,9 @@
         {
             // Supplier
             this.CreateMap<SupplierDto, Supplier>();
+            this.CreateMap<Supplier, ExportLocalSupplierDto>()
+                .ForMember(d => d.PartsCount,
+                    opt => opt.MapFrom(s => s.Parts.Count));
 
             // Part
             this.CreateMap<PartDto, Part>()
@@ -41,6 +44,13 @@
 
             // Sale
             this.CreateMap<SaleDto, Sale>();
+            //this.CreateMap<Sale, ExportSaleByCustomerDto>()
+            //    .ForMember(d => d.FullName,
+            //        opt => opt.MapFrom(s => s.Customer.Name))
+            //    .ForMember(d => d.BoughtCars,
+            //        opt => opt.MapFrom(s => s.Customer.Sales.Count))
+            //    .ForMember(d => d.SpentMoney,
+            //        opt => opt.MapFrom(s => s.Car.PartsCars.Sum(p => p.Part.Price)));
         }
     }
 }
