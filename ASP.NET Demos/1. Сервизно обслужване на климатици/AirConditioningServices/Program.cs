@@ -1,7 +1,8 @@
-using AirConditioningServices.Data;
-using AirConditioningServices.Data.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+
+using AirConditioningServices.Data;
+using AirConditioningServices.Data.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 

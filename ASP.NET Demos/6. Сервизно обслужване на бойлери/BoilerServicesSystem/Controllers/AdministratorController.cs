@@ -1,12 +1,12 @@
-﻿namespace AirConditioningServices.Controllers
+﻿namespace BoilerServicesSystem.Controllers
 {
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.EntityFrameworkCore;
 
-    using AirConditioningServices.Data;
-    using AirConditioningServices.Data.Models;
-    using AirConditioningServices.Data.Models.Enums;
+    using BoilerServicesSystem.Data;
+    using BoilerServicesSystem.Data.Models;
+    using BoilerServicesSystem.Data.Models.Enums;
 
     [Authorize(Roles = "Administrator")]
     public class AdministratorController : Controller
@@ -65,8 +65,8 @@
 				return NotFound();
 			}
 
-			if (serviceRequest.Status != ServiceStatuses.Waiting)
-			{
+            if (serviceRequest.Status != ServiceStatuses.Waiting)
+            {
                 return RedirectToAction(nameof(Index));
             }
 
@@ -96,7 +96,7 @@
 
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public async Task<IActionResult> Edit(string id, ServiceRequest serviceRequest)
+		public async Task<IActionResult> Edit(string id, [Bind("Id,Name,Description,Address,Image,Status,VisitedDate,CreatedById")] ServiceRequest serviceRequest)
 		{
 			if (id != serviceRequest.Id)
 			{

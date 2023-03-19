@@ -1,4 +1,5 @@
-﻿@model IEnumerable<AirConditioningServices.Data.Models.ServiceRequest>
+﻿@using BoilerServicesSystem.Data.Models;
+@model IEnumerable<ServiceRequest>
 
 @{
 	ViewData["Title"] = "Index";
@@ -18,6 +19,9 @@
 			</th>
 			<th>
 				@Html.DisplayNameFor(model => model.Description)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.BoilerModel)
 			</th>
 			<th>
 				@Html.DisplayNameFor(model => model.Address)
@@ -40,6 +44,9 @@
 				</td>
 				<td>
 					@Html.DisplayFor(modelItem => item.Description)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.BoilerModel)
 				</td>
 				<td>
 					@Html.DisplayFor(modelItem => item.Address)

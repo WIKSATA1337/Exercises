@@ -35,7 +35,8 @@ namespace AirConditioningServices.Controllers
 			if (User.IsInRole("Tech"))
 			{
 				currentUserRequests = await _context.ServiceRequests
-					.Where(sr => sr.TechResponsible == null)
+					.Where(sr => sr.TechResponsible == null ||
+						sr.TechResponsible.Id == currentUser.Id)
 					.ToListAsync();
 			}
 
@@ -89,7 +90,7 @@ namespace AirConditioningServices.Controllers
 
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public async Task<IActionResult> Create([Bind("Id,Name,Description,Address,Image,Status,VisitedDate,CreatedById")] ServiceRequest serviceRequest)
+		public async Task<IActionResult> Create(ServiceRequest serviceRequest)
 		{
 			var currentUser = _context.Users
 				.First(u => u.UserName == User.Identity.Name);
@@ -141,7 +142,7 @@ namespace AirConditioningServices.Controllers
 
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public async Task<IActionResult> Edit(string id, [Bind("Id,Name,Description,Address,Image,Status,VisitedDate,CreatedById")] ServiceRequest serviceRequest)
+		public async Task<IActionResult> Edit(string id, ServiceRequest serviceRequest)
 		{
 			if (id != serviceRequest.Id)
 			{
