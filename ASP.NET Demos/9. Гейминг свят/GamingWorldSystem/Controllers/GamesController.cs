@@ -51,7 +51,7 @@ namespace GamingWorldSystem.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
 		[Authorize(Roles = "Administrator")]
-		public async Task<IActionResult> Create([Bind("Id,Name,Description,Image,PremierDate")] Game game)
+		public async Task<IActionResult> Create(Game game)
         {
             game.Image = new byte[1];
 			ModelState.Remove("Image");
@@ -89,7 +89,7 @@ namespace GamingWorldSystem.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
 		[Authorize(Roles = "Administrator")]
-		public async Task<IActionResult> Edit(string id, [Bind("Id,Name,Description,Image,PremierDate")] Game game)
+		public async Task<IActionResult> Edit(string id, Game game)
         {
             if (id != game.Id)
             {

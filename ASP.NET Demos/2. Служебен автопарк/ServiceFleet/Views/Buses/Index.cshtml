@@ -1,0 +1,92 @@
+﻿@using ServiceFleet.Data.Models;
+@model IEnumerable<Bus>
+
+@{
+	ViewData["Title"] = "Index";
+}
+
+<h1>All Buses</h1>
+
+@if (User.IsInRole("Dispatcher") || User.IsInRole("Administrator"))
+{
+	<p>
+		<a asp-action="Create">Create New</a>
+	</p>
+}
+
+<table class="table">
+	<thead>
+		<tr>
+			<th>
+				@Html.DisplayNameFor(model => model.Name)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Description)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Route)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.StartDate)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.ArriveDate)
+			</th>
+			@if (User.IsInRole("Dispatcher") || User.IsInRole("Administrator"))
+			{
+				<th>
+					@Html.DisplayNameFor(model => model.BusDriverId)
+				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.Status)
+				</th>
+			}
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var item in Model)
+		{
+			<tr>
+				<td>
+					@Html.DisplayFor(modelItem => item.Name)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Description)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Route)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.StartDate)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.ArriveDate)
+				</td>
+				@if (User.IsInRole("Dispatcher") || User.IsInRole("Administrator"))
+				{
+					<td>
+						@Html.DisplayFor(modelItem => item.BusDriverId)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.Status)
+					</td>
+				}
+				<td>
+					<a asp-action="Details" asp-route-id="@item.Id">Details</a>
+					
+					@if (User.IsInRole("Driver"))
+					{
+						<a asp-action="Start" asp-route-id="@item.Id">Start</a>
+					}
+
+					@if (User.IsInRole("Dispatcher") || User.IsInRole("Administrator"))
+					{
+						<a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+						<a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+					}
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>
