@@ -122,10 +122,6 @@ I strive to add every single exercise I do here.
 >
 > - #### <a href="https://github.com/viktorgkw/Exercises/blob/main/Other/PascalTriangle.cs">Pascal's Triangle</a>
 
-### <a href="https://github.com/viktorgkw/Exercises/tree/main/Other">ASP.NET</a>
-
-> - #### <a href="https://github.com/viktorgkw/Exercises/tree/main/ASP.NET%20Demos">Demos</a>
-
 ## Languages/Packages/Frameworks/Libraries 💻
 
 - **C#**
