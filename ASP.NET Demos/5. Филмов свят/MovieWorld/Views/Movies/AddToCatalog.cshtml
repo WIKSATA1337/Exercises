@@ -1,0 +1,12 @@
+﻿@using MovieWorld.Data.Models;
+@{
+    ViewData["Title"] = "Create";
+    List<Catalog> Catalogs = ViewBag["Catalogs"];
+}
+
+<h2>Choose catalog</h2>
+
+@foreach(var catalog in Catalogs)
+{
+    <a asp-action="AddToCatalog" asp-route-name="@catalog.Name">@catalog.Name</a>
+}

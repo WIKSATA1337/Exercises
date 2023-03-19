@@ -1,0 +1,37 @@
+﻿@model MovieWorld.Data.Models.Catalog
+
+@{
+    ViewData["Title"] = "Details";
+    List<string> MovieNames = ViewBag["MovieNames"];
+}
+
+<h1>Details</h1>
+
+<div>
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        <dt class = "col-sm-2">
+            Movies
+        </dt>
+        <dd class = "col-sm-10">
+            @foreach (var movieName in MovieNames)
+            {
+                @movieName
+            }
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
