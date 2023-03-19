@@ -1,12 +1,12 @@
-namespace CoolEventsSystem.Views.Administrator.Users;
+namespace MovieWorld.Views.Administrator.Users;
 
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 
-using CoolEventsSystem.Data;
-using CoolEventsSystem.Data.Models;
+using MovieWorld.Data;
+using MovieWorld.Data.Models;
 
 [Authorize(Roles = "Administrator")]
 public class IndexModel : PageModel
