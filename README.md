@@ -23,6 +23,8 @@ I strive to add every single exercise I do here.
 > - #### <a href="https://github.com/viktorgkw/Exercises/tree/main/Entity%20Framework/JSON%20Processing">JSON Processing</a>
 >
 > - #### <a href="https://github.com/viktorgkw/Exercises/tree/main/Entity%20Framework/XML%20Processing">XML Processing</a>
+>
+> - #### <a href="https://github.com/viktorgkw/Exercises/tree/main/Entity%20Framework/Workshop">Workshop</a>
 
 ### <a href="https://github.com/viktorgkw/Exercises/tree/main/Algorithms">Algorithms</a>
 
