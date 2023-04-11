@@ -124,10 +124,11 @@ I strive to add every single exercise I do here.
 >
 > - #### <a href="https://github.com/viktorgkw/Exercises/blob/main/Other/PascalTriangle.cs">Pascal's Triangle</a>
 
-## Languages/Packages/Frameworks/Libraries 💻
+## Technologies 💻
 
 - **C#**
 - **NUnit**
 - **Moq**
+- **Entity Framework**
 
 ## Thanks for checking out the repository! 💚
