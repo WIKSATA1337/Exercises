@@ -1,4 +1,4 @@
-# Exercises 🧮
+# SoftUni Journey 🧮
 
 ## About ℹ️
 
