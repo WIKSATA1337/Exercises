@@ -99,5 +99,3 @@
 > - #### <a href="https://github.com/viktorgkw/Exercises/tree/main/SoftUni/Advanced/SetsAndDictionaries">Sets and Dictionaries</a>
 >
 > - #### <a href="https://github.com/viktorgkw/Exercises/tree/main/SoftUni/Advanced/StacksAndQueues">Stacks and Queues</a>
-
-## Thanks for checking out the repository! 💚
